@@ -11,8 +11,24 @@ logging:
     name: monitoring.log
     max-size: 10MB
 
-#Database configuration
+#Metrics related configurations
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
 spring:
+  #Database configuration
   datasource:
     url: jdbc:postgresql://localhost:5433/dev_db
     username: dev_user

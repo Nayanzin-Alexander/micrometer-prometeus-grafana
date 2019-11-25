@@ -3,6 +3,7 @@ package com.nayanzin.micrometerprometeusgrafana.config.swagger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -19,7 +20,8 @@ public class SwaggerConfig {
     public Docket getDocket() {
         return new Docket(SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.nayanzin"))
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
                 .build()
                 .apiInfo(getApiInfo());
     }

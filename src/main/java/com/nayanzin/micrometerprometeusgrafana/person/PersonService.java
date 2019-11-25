@@ -23,7 +23,7 @@ public class PersonService {
         return personRepository.findById(id);
     }
 
-    @Timed
+    @Timed("getPage")
     public Page<Person> getPage(Pageable pageable) {
         return personRepository.findAll(pageable);
     }

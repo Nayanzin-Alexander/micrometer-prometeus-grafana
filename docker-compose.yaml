@@ -3,6 +3,7 @@ version: '3.1'
 services:
   postgres:
     image: postgres
+    container_name: postgres
     environment:
       POSTGRES_USER: dev_user
       POSTGRES_PASSWORD: dev_password
@@ -10,8 +11,28 @@ services:
     ports:
       - 5433:5432
 
-  adminer:
-    image: adminer
-    restart: always
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - ./prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
     ports:
-      - 8080:8080
+      - 9090:9090
+    network_mode: host
+
+  grafana-ui:
+    image: grafana/grafana
+    container_name: grafana
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+    ports:
+      - 3000:3000
+    network_mode: host
