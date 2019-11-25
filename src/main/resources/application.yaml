@@ -1,0 +1,27 @@
+#Server configuration
+server:
+  port: 9000
+
+#Logging configuration
+logging:
+  level:
+    com.nayanzin: debug
+  file:
+    path: logs
+    name: monitoring.log
+    max-size: 10MB
+
+#Database configuration
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/dev_db
+    username: dev_user
+    password: dev_password
+  h2:
+    console:
+      enabled: true
+      path: /db-console
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate

@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MicrometerPrometeusGrafanaApplication {
+public class MicrometerPrometheusGrafanaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MicrometerPrometeusGrafanaApplication.class, args);
+        SpringApplication.run(MicrometerPrometheusGrafanaApplication.class, args);
     }
 
 }
